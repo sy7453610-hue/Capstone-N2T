@@ -1,0 +1,10 @@
+// Computer.hdl: CPU + ROM32K + Memory
+CHIP Computer {
+    IN reset;
+
+    PARTS:
+    CPU(inM=memOut, instruction=instr, reset=reset,
+        outM=outM, writeM=writeM, addressM=addressM, pc=pc);
+    ROM32K(address=pc, out=instr);
+    Memory(in=outM, load=writeM, address=addressM, out=memOut);
+}
